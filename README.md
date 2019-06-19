@@ -1,5 +1,5 @@
 # get-nth-on-duty-days
-R 小工具, 列出整年度每個月的第 n 個上班日的下一天, 下方程式以 n = 1 為例
+R 小工具, 列出整年度每個月的第 1 個上班日的隔日日期
 
 必須事先準備一個檔案紀錄整年度特殊節日
 
@@ -20,20 +20,17 @@ names(is_on_duty) <- as.character(date_special)
 nth_on_duty_days <- character(12)
 dates <- seq( data.table::as.IDate("2019/01/01"), by = "month", length.out = 12 )
 
-# 第 n 個上班日
-n <- 1
-
 for (i in 1:12) {
 	tmp_date <- dates[i]
 	
 	while (TRUE) {
 		if ( (data.table::wday(tmp_date) - 1) %in% 1:5 ) {
 			if ( !(tmp_date %in% date_special) ) {
-				nth_on_duty_days[i] <- as.character( tmp_date + (n-1) )
+				nth_on_duty_days[i] <- as.character( tmp_date + 1 ) # 第 1 個上班日隔日
 				break
 			}
 			else if ( is_on_duty[as.character(tmp_date)] == 0 ) {
-				nth_on_duty_days[i] <- as.character( tmp_date + (n-1) )
+				nth_on_duty_days[i] <- as.character( tmp_date + 1 ) # 第 1 個上班日隔日
 				break
 			}
 		}
