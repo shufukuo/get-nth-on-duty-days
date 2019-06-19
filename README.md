@@ -1,4 +1,4 @@
-# get-nth-on-duty-days
+# get-on-duty-days
 R 小工具, 列出整年度每個月的第 1 個上班日的隔日日期
 
 必須事先準備一個檔案紀錄整年度特殊節日
