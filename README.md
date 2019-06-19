@@ -24,11 +24,14 @@ for (i in 1:12) {
 	tmp_date <- dates[i]
 	
 	while (TRUE) {
+		# 判斷是否為週末
 		if ( (data.table::wday(tmp_date) - 1) %in% 1:5 ) {
+			# 判斷是否為特殊節日
 			if ( !(tmp_date %in% date_special) ) {
 				nth_on_duty_days[i] <- as.character( tmp_date + 1 ) # 第 1 個上班日隔日
 				break
 			}
+			# 判斷是否為上班日
 			else if ( is_on_duty[as.character(tmp_date)] == 0 ) {
 				nth_on_duty_days[i] <- as.character( tmp_date + 1 ) # 第 1 個上班日隔日
 				break
@@ -51,9 +54,7 @@ Output:
 
 P.S.
 
-上方例子是以每月 1 日起算列出每個月的第 1 個上班日之隔日
-若是想列出每個月 5 號起算第 1 個上班日隔日, 只需將宣告 ```dates``` 的日期改為 ```"2019/01/05"``` 即可
-便可得到下方結果:
+上方例子是以每月 1 日起算列出每個月的第 1 個上班日之隔日. 若是想列出每個月 5 號起算第 1 個上班日隔日, 只需將宣告 ```dates``` 的日期改為 ```"2019/01/05"```, 便可得到下方結果:
 ```
 > nth_on_duty_days
  [1] "2019-01-08" "2019-02-12" "2019-03-06" "2019-04-09"
