@@ -37,7 +37,7 @@ for (i in 1:12) {
 			if ( !(tmp_date %in% date_special) ) {
 				j <- j + 1
 				if ( j == n ) {
-					out_dates[i] <- as.character( tmp_date + m )  # 第 1 個上班日隔 1 日
+					out_dates[i] <- as.character( tmp_date + m )  # 第 n 個上班日隔 m 日
 					break
 				}
 			}
@@ -45,7 +45,7 @@ for (i in 1:12) {
 			else if ( is_on_duty[as.character(tmp_date)] == 0 ) {
 				j <- j + 1
 				if ( j == n ) {
-					out_dates[i] <- as.character( tmp_date + m )  # 第 1 個上班日隔 1 日
+					out_dates[i] <- as.character( tmp_date + m )  # 第 n 個上班日隔 m 日
 					break
 				}
 			}
