@@ -1,10 +1,11 @@
 # get-nth-on-duty-days
-R 小工具, 列出整年度每個月的第 n 個上班日的隔 m 日日期, 以下為 n = 1, m = 1 的例子
+R 小工具, 列出整年度每個月的第 n 個上班日的隔 m 日日期
 
 需要先準備好一個檔案紀錄整年度特殊節日
 
 範例: [holiday_2019.csv](https://drive.google.com/open?id=15zSgQuQZSDLyo8EKrq-Tq0Znroup98Ek)
 
+以下為 n = 1, m = 1 的例子
 ```
 require(data.table)
 
