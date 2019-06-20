@@ -14,9 +14,9 @@ df_holidays <- read.csv( "holiday_2019.csv", header = TRUE )
 # 特殊節日日期
 date_special <- data.table::as.IDate(df_holidays[ , "date"])
 
-# 特殊節日是否上班, 1: 是, 0: 否
-is_on_duty <- df_holidays[ , "is_on_duty"]
-names(is_on_duty) <- as.character(date_special)
+# 特殊節日是否放假, 1: 是, 0: 否
+is_off_duty <- df_holidays[ , "is_off_duty"]
+names(is_off_duty) <- as.character(date_special)
 
 out_dates <- character(12)
 dates <- seq( data.table::as.IDate("2019/01/01"), by = "month", length.out = 12 )
@@ -43,7 +43,7 @@ for (i in 1:12) {
 				}
 			}
 			# 判斷特殊節日是否為上班日
-			else if ( is_on_duty[as.character(tmp_date)] == 0 ) {
+			else if ( is_off_duty[as.character(tmp_date)] == 0 ) {
 				j <- j + 1
 				if ( j == n ) {
 					out_dates[i] <- as.character( tmp_date + m )  # 第 n 個上班日隔 m 日
