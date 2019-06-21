@@ -32,23 +32,23 @@ for (i in 1:12) {
 	j <- 0
 	
 	while (TRUE) {
-		# 判斷是否為週末
-		if ( (data.table::wday(tmp_date) - 1) %in% 1:5 ) {
-			# 判斷是否為特殊節日
-			if ( !(tmp_date %in% date_special) ) {
+		# 判斷是否為特殊節日
+		if ( tmp_date %in% date_special ) {
+			# 判斷特殊節日是否為上班日
+			if ( is_off_duty[as.character(tmp_date)] == 0 ) {
 				j <- j + 1
 				if ( j == n ) {
 					out_dates[i] <- as.character( tmp_date + m )  # 第 n 個上班日隔 m 日
 					break
 				}
 			}
-			# 判斷特殊節日是否為上班日
-			else if ( is_off_duty[as.character(tmp_date)] == 0 ) {
-				j <- j + 1
-				if ( j == n ) {
-					out_dates[i] <- as.character( tmp_date + m )  # 第 n 個上班日隔 m 日
-					break
-				}
+		}
+		# 判斷是否為週末
+		else if ( (data.table::wday(tmp_date) - 1) %in% 1:5 ) {
+			j <- j + 1
+			if ( j == n ) {
+				out_dates[i] <- as.character( tmp_date + m )  # 第 n 個上班日隔 m 日
+				break
 			}
 		}
 		
@@ -80,5 +80,5 @@ P.S.
 > out_dates
  [1] "2019-01-08" "2019-02-12" "2019-03-06" "2019-04-09"
  [5] "2019-05-07" "2019-06-06" "2019-07-06" "2019-08-06"
- [9] "2019-09-06" "2019-10-08" "2019-11-06" "2019-12-06"
+ [9] "2019-09-06" "2019-10-06" "2019-11-06" "2019-12-06"
 ```
